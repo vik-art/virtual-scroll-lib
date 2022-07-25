@@ -1,0 +1,13 @@
+<div #viewport [ngStyle]="{ 'height.px': viewportHeigh, overflow: 'auto' }" (scroll)="onScroll($event)">
+    <div [ngStyle]="{ 'height.px': getTopheight() }"></div>
+    <table>
+        <tbody>
+            <tr *ngFor="let item of data?.slice(start - 1, start + visibleRows); let idx = index"
+                [ngStyle]="{ 'height.px': rowHeight }">
+                <td class="table-index">{{ item.index }}</td>
+                <td>{{ item.text }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div [ngStyle]="{ 'height.px': getBottomHeight() }"></div>
+</div>
