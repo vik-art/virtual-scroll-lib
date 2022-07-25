@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Data } from 'src/app/interfaces/data.interface';
-
-import { DataService } from 'src/app/services/data.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { SETTINGS } from 'src/app/settings';
 
 @Component({
   selector: 'app-virtual-scroll',
@@ -10,28 +8,30 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class VirtualScrollComponent implements OnInit {
   public viewportHeigh: number = 0;
-  public rowHeight: number = 50;
-  public data: Array<Data> = [];
+  public start: number = 1;
+  public topPaddingHeight: number = 0;
+  public bottomPaddingHeight: number = 0;
 
-  public visibleRows: number = 4;
-  public start: number = 0;
+  @Input() data: Array<any> = [];
+  @Input() rowHeight: number = 0;
+  @Input() visibleRows: number = 0;
 
-  constructor(private dataService: DataService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.data = this.dataService.getData(1, 10);
     this.viewportHeigh = this.rowHeight * this.visibleRows + 1;
   }
 
   public getTopheight() {
-    return this.rowHeight * this.start;
+    return this.rowHeight * (this.start - 1);
   }
 
   public getBottomHeight() {
-    return this.rowHeight - (this.data.length - this.start * this.visibleRows);
+    if(this.start < this.data.length) this.rowHeight - (this.data!.length - this.start * this.visibleRows);
   }
 
   public onScroll(e: any) {
-    this.start = Math.round(e.target.scrollTop / this.rowHeight);
+    this.start =
+        SETTINGS.minIndex + Math.round(e.target.scrollTop / this.rowHeight);
   }
 }
