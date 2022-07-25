@@ -22,16 +22,16 @@ export class VirtualScrollComponent implements OnInit {
     this.viewportHeigh = this.rowHeight * this.visibleRows + 1;
   }
 
-  public getTopheight() {
+  public getTopheight(): number {
     return this.rowHeight * (this.start - 1);
   }
 
-  public getBottomHeight() {
-    if(this.start < this.data.length) this.rowHeight - (this.data!.length - this.start * this.visibleRows);
+  public getBottomHeight(): void {
+    if (this.start < this.data.length)
+      this.rowHeight - (this.data!.length - this.start * this.visibleRows);
   }
 
-  public onScroll(e: any) {
-    this.start =
-        SETTINGS.minIndex + Math.round(e.target.scrollTop / this.rowHeight);
+  public onScroll(event: any): void {
+    this.start = SETTINGS.minIndex + Math.round(event.target.scrollTop / this.rowHeight);
   }
 }
