@@ -8,9 +8,7 @@ import { SETTINGS } from 'src/app/settings';
 })
 export class VirtualScrollComponent implements OnInit {
   public viewportHeigh: number = 0;
-  public start: number = 1;
-  public topPaddingHeight: number = 0;
-  public bottomPaddingHeight: number = 0;
+  public start: number = 1; 
 
   @Input() data: Array<any> = [];
   @Input() rowHeight: number = 0;
