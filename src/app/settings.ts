@@ -1,8 +1,11 @@
-export const SETTINGS = {
-  minIndex: 1,
-  maxIndex: 10000,
+import { Settings } from "./interfaces/settings.interface";
+
+export const SETTINGS: Settings = {
+  minIndex: 0,
+  maxIndex: 100000,
   startIndex: 6,
-  itemHeight: 20,
-  amount: 5,
-  tolerance: 2
-};
+  itemHeight: 50,
+  amount: 10,
+  tolerance: 2,
+  prefetchedItems: 8
+}
