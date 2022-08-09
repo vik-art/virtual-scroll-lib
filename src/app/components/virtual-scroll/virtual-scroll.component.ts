@@ -39,18 +39,6 @@ export class VirtualScrollComponent implements OnInit {
     }
   }
 
-  public getTopHeight() {
-    const { startIndex, tolerance, minIndex, itemHeight } = this.settings;
-    const itemsAbove = startIndex - tolerance - minIndex;
-    this.topPaddingHeight = itemsAbove * itemHeight;
-  }
-
-  public getBottomHeight(): void {
-    const { maxIndex, minIndex, itemHeight } = this.settings;
-    const totalHeight = (maxIndex - minIndex + 1) * itemHeight;
-    this.bottomPaddingHeight = totalHeight - this.topPaddingHeight;
-  }
-
   public onScroll(e: any) {
     const { minIndex, maxIndex, itemHeight, tolerance, amount } = this.settings;
     const toleranceHeight = tolerance * itemHeight;
@@ -58,11 +46,9 @@ export class VirtualScrollComponent implements OnInit {
     const totalHeight = (maxIndex - minIndex + 1) * itemHeight;
     const idx = minIndex + Math.floor((e.target.scrollTop - toleranceHeight) / itemHeight);
     const data = this.getRenderedData(idx, bufferedItems);
-    this.topPaddingHeight = Math.max((idx - minIndex) * itemHeight, 0);
-    this.bottomPaddingHeight = Math.max(
-      totalHeight - this.topPaddingHeight - data.length * itemHeight,
-      0
-    );
+    this.topPaddingHeight = Math.max((idx - minIndex) * itemHeight);
+    this.bottomPaddingHeight = Math.max(totalHeight - this.topPaddingHeight - this.data.length * itemHeight);
+    console.log(this.bottomPaddingHeight)
     this.renderedData = data;
   }
 
