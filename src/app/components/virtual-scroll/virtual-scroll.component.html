@@ -1,13 +1,13 @@
 <div [ngStyle]="{ 'height.px': viewportHeight, overflow: 'auto' }" #container (scroll)="onScroll($event)">
-    <div [ngStyle]="{'height.px': topPaddingHeight}"></div>
+    <div [ngStyle]="{ 'height.px': topPaddingHeight }"></div>
     <table>
         <tbody>
-            <tr *ngFor="let item of renderedData" [ngStyle]="{'height.px': settings.itemHeight}">
-                <td class="table-index">{{item.index}}</td>
+            <tr *ngFor="let item of renderedData" [ngStyle]="{ 'height.px': settings.itemHeight }">
+                <td class="table-index">{{ item.index }}</td>
                 <td>{{ item.text }}</td>
             </tr>
         </tbody>
     </table>
-    <!--div [ngStyle]="{'height.px': bottomPaddingHeight}">
-    </div-->
+    <div [ngStyle]="{'height.px': bottomPaddingHeight}">
+    </div>
 </div>

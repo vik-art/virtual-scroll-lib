@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Data } from '@angular/router';
-import { Settings } from './interfaces/settings.interface';
 
 import { DataService } from './services/data.service';
 import { SETTINGS } from './settings';
+import { Data } from './interfaces/data.interface';
+import { Settings } from './interfaces/settings.interface';
 
 @Component({
   selector: 'app-root',
